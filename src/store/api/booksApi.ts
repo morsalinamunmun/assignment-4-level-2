@@ -105,7 +105,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export interface Book {
-  id: string;
+  _id: string;
   title: string;
   author: string;
   genre: string;
