@@ -314,7 +314,7 @@ const BookList = () => {
             {books?.data?.map((book) => {
               const available = book.copies > 0 && book.available;
 
-              return (
+              return (                
                 <tr key={book._id} className="border-t hover:bg-accent transition">
                   <td className="px-4 py-2">{book.title}</td>
                   <td className="px-4 py-2">{book.author}</td>
@@ -331,6 +331,11 @@ const BookList = () => {
                       <Button size="sm" variant="outline">
                         <Edit className="w-4 h-4" />
                       </Button>
+                    </Link>
+                    <Link to={`/books/${book._id}`}>
+                    <Button variant="outline" size="sm">                     
+                        <Eye className="w-4 h-4" />                     
+                    </Button>
                     </Link>
 
                     <Button
