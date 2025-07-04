@@ -14,6 +14,7 @@ import Index from "./pages/Index";
 import CreateBook from "./pages/CreateBook";
 import EditBook from "./pages/EditBook";
 import BorrowBook from "./pages/BorrowBook";
+import BorrowSummary from "./pages/BorrowSummary";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App = () => (
               <Route path="/create-book" element={<CreateBook/>} />
              <Route path="/edit-book/:id" element={<EditBook />} />
               <Route path="/borrow/:bookId" element={<BorrowBook />} />
+              <Route path="/borrow-summary" element={<BorrowSummary />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AppLayout>

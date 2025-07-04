@@ -17,10 +17,17 @@ export interface Borrow {
 }
 
 export interface BorrowSummaryItem {
-  bookTitle: string;
+  totalQuantity: number;
+  book:{
+    title: string;
   isbn: string;
-  totalQuantityBorrowed: number;
+  
 }
+}
+type BorrowSummary = {
+  data: BorrowSummaryItem[];
+  length?: number;
+};
 
 export const borrowsApi = createApi({
   reducerPath: 'borrowsApi',
@@ -38,8 +45,8 @@ export const borrowsApi = createApi({
       invalidatesTags: ['Borrow'],
     }),
 
-    getBorrowSummary: builder.query<BorrowSummaryItem[], void>({
-      query: () => '/summary',
+    getBorrowSummary: builder.query<BorrowSummary, void>({
+      query: () => '',
       providesTags: ['Borrow'],
     }),
   }),
