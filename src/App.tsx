@@ -12,6 +12,7 @@ import AppLayout from "./layout/AppLayout";
 import { store } from "./store/store";
 import Index from "./pages/Index";
 import CreateBook from "./pages/CreateBook";
+import EditBook from "./pages/EditBook";
 
 const queryClient = new QueryClient();
 
@@ -27,7 +28,7 @@ const App = () => (
               <Route path="/" element={<Index/>} />
               <Route path="/books" element={<BookList />} />
               <Route path="/create-book" element={<CreateBook/>} />
-             
+             <Route path="/edit-book/:id" element={<EditBook />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AppLayout>

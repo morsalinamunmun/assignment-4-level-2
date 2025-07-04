@@ -120,6 +120,11 @@ type BookListResponse = {
   data: Book[];
   length?: number;
 };
+type SingleBookResponse = {
+  success: boolean;
+  message: string;
+  data: Book;
+};
 
 export const booksApi = createApi({
   reducerPath: 'booksApi',
@@ -133,7 +138,7 @@ export const booksApi = createApi({
       providesTags: ['Book'],
     }),
 
-    getBook: builder.query<Book, string>({
+    getBook: builder.query< SingleBookResponse, string>({
       query: (id) => `/${id}`,
       providesTags: (_result, _error, id) => [{ type: 'Book', id }],
     }),
@@ -147,13 +152,13 @@ export const booksApi = createApi({
       invalidatesTags: ['Book'],
     }),
 
-    updateBook: builder.mutation<Book, Partial<Book> & { id: string }>({
+    updateBook: builder.mutation<BookListResponse, Partial<Book> & { id: string }>({
       query: ({ id, ...patch }) => ({
         url: `/${id}`,
         method: 'PATCH',
         body: patch,
       }),
-      invalidatesTags: (_result, _error, { id }) => [{ type: 'Book', id }],
+        invalidatesTags: ['Book'],
     }),
 
     deleteBook: builder.mutation<{ success: boolean }, string>({
