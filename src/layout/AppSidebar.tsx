@@ -37,7 +37,7 @@ const menuItems = [
 ];
 
 export function AppSidebar() {
-  const { collapsed } = useSidebar();
+  const { isCollapsed } = useSidebar();
   const location = useLocation();
 
   const isActive = (path: string) => {
@@ -48,13 +48,13 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar className={collapsed ? "w-16" : "w-64"} collapsible>
+    <Sidebar className={isCollapsed ? "w-16" : "w-64"} collapsible>
       <SidebarContent className="bg-sidebar">
         <Link to="/">
         <div className="p-4">
           <div className="flex items-center gap-2">
             <List className="h-8 w-8 text-sidebar-primary" />
-            {!collapsed && (
+            {!isCollapsed && (
               <div>
                 <h2 className="text-lg font-bold text-sidebar-foreground">LibraryOS</h2>
                 <p className="text-xs text-sidebar-foreground/70">Book Management</p>
@@ -81,7 +81,7 @@ export function AppSidebar() {
                       }
                     >
                       <item.icon className="h-5 w-5" />
-                      {!collapsed && <span>{item.title}</span>}
+                      {!isCollapsed && <span>{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
