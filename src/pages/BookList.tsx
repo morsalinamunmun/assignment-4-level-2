@@ -16,34 +16,34 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Edit, Trash2, Eye, BookOpen, Plus } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { useDeleteBookMutation, useGetBooksQuery } from "@/store/api/booksApi";
 
 const BookList = () => {
-  const books=[]
-  const isLoading = false; 
-  const error = null; 
+  const { data: books, isLoading, error } = useGetBooksQuery()
+  const [deleteBook] = useDeleteBookMutation();
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [bookToDelete, setBookToDelete] = useState<string | null>(null);
 
-  // const handleDelete = async () => {
-  //   if (!bookToDelete) return;
+  const handleDelete = async () => {
+    if (!bookToDelete) return;
     
-  //   try {
-  //     await deleteBook(bookToDelete).unwrap();
-  //     toast({
-  //       title: "Success",
-  //       description: "Book deleted successfully",
-  //     });
-  //   } catch (error) {
-  //     toast({
-  //       title: "Error",
-  //       description: "Failed to delete book",
-  //       variant: "destructive",
-  //     });
-  //   } finally {
-  //     setDeleteDialogOpen(false);
-  //     setBookToDelete(null);
-  //   }
-  // };
+    try {
+      await deleteBook(bookToDelete).unwrap();
+      toast({
+        title: "Success",
+        description: "Book deleted successfully",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to delete book",
+        variant: "destructive",
+      });
+    } finally {
+      setDeleteDialogOpen(false);
+      setBookToDelete(null);
+    }
+  };
 
   const openDeleteDialog = (bookId: string) => {
     setBookToDelete(bookId);
@@ -117,7 +117,7 @@ const BookList = () => {
         </Card>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {books.map((book) => (
+          {books?.data?.map((book) => (
             <Card key={book.id} className="book-card group">
               <CardHeader className="pb-3">
                 <div className="flex justify-between items-start">
@@ -213,7 +213,7 @@ const BookList = () => {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+            <AlertDialogAction onClick={handleDelete} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
               Delete Book
             </AlertDialogAction>
           </AlertDialogFooter>

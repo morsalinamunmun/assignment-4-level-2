@@ -1,6 +1,6 @@
 
-import { NavLink, useLocation } from "react-router-dom";
-import { BookOpen, Plus, BarChart3, List } from "lucide-react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { BookOpen, Plus, BarChart3, List, Home } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -14,6 +14,11 @@ import {
 } from "@/components/ui/sidebar";
 
 const menuItems = [
+  {
+    title: "Home",
+    url: "/",
+    icon: Home,
+  },
   {
     title: "All Books",
     url: "/books",
@@ -45,6 +50,7 @@ export function AppSidebar() {
   return (
     <Sidebar className={collapsed ? "w-16" : "w-64"} collapsible>
       <SidebarContent className="bg-sidebar">
+        <Link to="/">
         <div className="p-4">
           <div className="flex items-center gap-2">
             <List className="h-8 w-8 text-sidebar-primary" />
@@ -56,11 +62,9 @@ export function AppSidebar() {
             )}
           </div>
         </div>
+        </Link>
 
         <SidebarGroup>
-          <SidebarGroupLabel className="text-sidebar-foreground/70">
-            Navigation
-          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((item) => (

@@ -9,11 +9,13 @@ import { Provider } from "react-redux";
 import BookList from "./pages/BookList";
 import NotFound from "./pages/NotFound";
 import AppLayout from "./layout/AppLayout";
+import { store } from "./store/store";
+import Index from "./pages/Index";
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  // <Provider store={store}>
+  <Provider store={store}>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
@@ -21,7 +23,8 @@ const App = () => (
         <BrowserRouter>
           <AppLayout>
             <Routes>
-              <Route path="/" element={<BookList />} />
+              <Route path="/" element={<Index/>} />
+              <Route path="/books" element={<BookList />} />
               
               <Route path="*" element={<NotFound />} />
             </Routes>
@@ -29,7 +32,7 @@ const App = () => (
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
-  // </Provider>
+   </Provider>
 );
 
 export default App;
