@@ -1,0 +1,77 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Library-themed design system with warm, book-inspired colors */
+
+@layer base {
+  :root {
+    --background: 45 15% 97%;
+    --foreground: 25 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 25 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 25 25% 15%;
+
+    --primary: 25 45% 35%;
+    --primary-foreground: 45 25% 95%;
+
+    --secondary: 45 25% 92%;
+    --secondary-foreground: 25 25% 25%;
+
+    --muted: 45 15% 94%;
+    --muted-foreground: 25 15% 45%;
+
+    --accent: 120 25% 85%;
+    --accent-foreground: 120 35% 25%;
+
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 45 15% 88%;
+    --input: 45 15% 88%;
+    --ring: 25 45% 35%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 25 35% 25%;
+    --sidebar-foreground: 45 25% 90%;
+    --sidebar-primary: 45 45% 65%;
+    --sidebar-primary-foreground: 25 25% 15%;
+    --sidebar-accent: 25 25% 35%;
+    --sidebar-accent-foreground: 45 25% 90%;
+    --sidebar-border: 25 25% 30%;
+    --sidebar-ring: 45 45% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .book-card {
+    @apply bg-card border border-border rounded-lg p-6 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors font-medium;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground px-4 py-2 rounded-lg hover:bg-secondary/80 transition-colors font-medium;
+  }
+}
